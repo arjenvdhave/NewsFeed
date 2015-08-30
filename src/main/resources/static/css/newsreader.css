@@ -1,0 +1,161 @@
+#content{
+    left: 300px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+}
+
+#newsContent{
+    background-color: #F7F6F6;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+
+}
+
+#sideMenu{
+    background-color: #606060;
+    width: 300px;
+    top: 0px;
+    bottom: 0px;
+    overflow: auto;
+    position: absolute;
+}
+
+
+.newsItem{
+    max-width: 600px;
+    background-color: #ffffff;
+    border: #EBEBEB solid 1px;
+    margin-bottom: 10px;
+}
+
+.newsCenterHelper{
+    margin: auto;
+    max-width: 600px;
+}
+
+
+.newsContainer{
+    padding: 10px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: auto;
+    position: absolute;
+}
+
+.newsNoImage{
+    padding-left: 25px;
+}
+
+.newsImageHolder{
+    padding: 25px;
+}
+.newsImage{
+    width: 100px;
+    height: 100px;
+}
+
+.newsTitle{
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.newsDate{
+    margin: 0px;
+    font-size: 12px;
+    color: #7A7A7A;
+}
+.newsContent{
+    padding-top: 15px;
+    padding-right: 20px;
+}
+.newsButton{
+    padding: 10px;
+}
+.floatRight{
+    float: right;
+}
+
+.normalSideContent{
+    display: block;
+}
+.smallSideContent{
+    display: none;
+}
+
+
+
+.userInfoContainer{
+    width: 300px;
+    height: 100px;
+}
+.userName{
+    color: #ffffff;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+}
+.avatarSmall{
+    width: 50px;
+    height: 50px;
+}
+.verticalCenterRow{
+    display: flex;
+    align-items: center;
+}
+
+.feedHeader{
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-bottom: #5D5D5D solid 1px;
+}
+
+.btnAddfeed{
+    color: #fff;
+    background-color: #000;
+}
+.btnAddfeed:hover{
+    color: #333;
+    background-color: #e6e6e6;
+}
+.btnAddfeed:hover:focus{
+    color: #333;
+    background-color: #e6e6e6;
+}
+.btnAddfeed:focus {
+    outline: none;
+    color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+    .newsImage{
+        width: 80px;
+        height: 80px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    #sideMenu{
+        width: 50px;
+    }
+    #content{
+        left: 50px;
+    }
+
+    .smallSideContent{
+        display: block;
+    }
+
+    .normalSideContent{
+        display: none;
+    }
+}
+
+
+

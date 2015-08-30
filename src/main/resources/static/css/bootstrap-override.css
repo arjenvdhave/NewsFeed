@@ -1,0 +1,15 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    background-color: #333333;
+}
+
+.nav-pills>li>a{
+    border-radius:  0px;
+    color: #ffffff;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #444444;
+}
+.nav-stacked>li+li{
+    margin-top: 0px;
+}

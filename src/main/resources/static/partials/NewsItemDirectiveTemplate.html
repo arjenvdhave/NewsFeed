@@ -1,0 +1,27 @@
+<div class="newsItem">
+    <div class="row">
+        <div class="col-xs-3 newsImageHolder" ng-hide="{{newsitem.imageUrl === null}}">
+            <img class="newsImage" ng-src="{{newsitem.imageUrl}}" />
+        </div>
+        <div ng-class="newsitem.imageUrl === null ? 'col-xs-12 newsNoImage': 'col-xs-9' ">
+            <div class="row">
+                <div class="col-xs-12"><h1 class="newsTitle">{{newsitem.title}}</h1></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><h3 class="newsDate">{{formatPublishDate(newsitem.publishedDate)}}, {{newsitem.source.name}}</h3></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><p class="newsContent">{{newsitem.content}}</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="newsButton"><a href="#" ng-click="removeNewsItem(  itemIdx, newsitem ) ">Verwijder</a></div>
+        </div>
+        <div class="col-xs-9">
+            <div class="newsButton floatRight"><a href="/">Opslaan</a></div>
+            <div class="newsButton floatRight"><a ng-href="{{newsitem.articleUrl}}" target="_blank">Lees meer</a></div>
+        </div>
+    </div>
+</div>

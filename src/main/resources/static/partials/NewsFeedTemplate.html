@@ -1,0 +1,13 @@
+<!--content-->
+<div id="newsContent">
+
+    <div class="newsContainer"  >
+        <div class="newsCenterHelper" ng-cloak ng-repeat="newsItem in newsFeedController.newsItems">
+            <nf-newsitem newsitem="newsItem"
+                         item-idx="$index"
+                         on-remove-click="newsFeedController.removeNewsItem( newsItemIdx, newsItem )">
+            </nf-newsitem>
+        </div>
+    </div>
+
+</div>

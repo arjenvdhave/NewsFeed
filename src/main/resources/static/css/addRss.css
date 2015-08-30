@@ -1,0 +1,38 @@
+.rssContent{
+    background-color: #F7F6F6;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+    position: absolute;
+
+}
+
+.rssPanel{
+    max-width: 600px;
+    background-color: #ffffff;
+    border: #EBEBEB solid 1px;
+    margin-bottom: 10px;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.rssCenterHelper{
+    margin: auto;
+    max-width: 600px;
+}
+
+
+.rssContainer{
+    padding: 10px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: auto;
+    position: absolute;
+}
+
+.buttonSpacer{
+    width: 5px;
+    height: 5px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test angular app</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-override.css">
+    <link rel="stylesheet" href="css/newsreader.css">
+    <link rel="stylesheet" href="css/addRss.css">
+
+    <script type="application/javascript">var userProfile={name:"Arjen van der Have", email:"arjen.xlan@gmail.com", avatar:"http://www.binarytradingforum.com/core/image.php?userid=9&dateline=1355299254"}</script>
+
+</head>
+<body ng-app="news_feed">
+
+
+    <div id="sideMenu">
+
+
+        <div class="normalSideContent" ng-controller="RssFeedController as rssCtrl">
+            <div class="userInfoContainer">
+                <nf-avatar ></nf-avatar>
+            </div>
+
+            <div class="feedHeader">
+                <div class="row verticalCenterRow">
+                    <div class="col-xs-10">
+                        Rss feeds
+                    </div>
+
+                    <div class="col-xs-1">
+                        <button type="button" class="btn btnAddfeed btn-xs"
+                                ng-click="rssCtrl.handleAddRssClick()">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" ng-class="rssCtrl.activeIndex === 0 ? 'active':''">
+                    <a href ng-click="rssCtrl.handleRssShowAllClick()" >Alle berichten</a>
+                </li>
+                <li role="presentation" ng-cloak ng-repeat="rssFeed in rssCtrl.feeds"
+                    ng-class="rssCtrl.activeIndex === $index+1 ? 'active':''">
+                    <a href ng-click="rssCtrl.handleRssItemClick( rssFeed )">{{rssFeed.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="smallSideContent">
+            <nf-avatar show-as-small="true"></nf-avatar>
+
+        </div>
+    </div>
+
+    <div id="content" ng-view>
+
+
+    </div>
+
+    <!--vendor scripts-->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="vendor/moment.min.js"></script>
+    <script src="vendor/angular-route.min.js"></script>
+
+    <!-- App -->
+    <script type="application/javascript" src="UserProfileModule.js"></script>
+    <script type="application/javascript" src="app.js"></script>
+
+    <!--Constants-->
+    <script type="application/javascript" src="js/constants/AppConstants.js"></script>
+    <script type="application/javascript" src="js/constants/EventConstants.js"></script>
+
+    <!--Services-->
+    <script type="application/javascript" src="js/services/NewsFeedService.js"></script>
+    <script type="application/javascript" src="js/services/RssFeedService.js"></script>
+
+    <!--Directves-->
+    <script type="application/javascript" src="js/directives/NewsItemDirective.js"></script>
+    <script type="application/javascript" src="js/directives/UserAvatarDirective.js"></script>
+
+    <!-- Controllers-->
+    <script type="application/javascript" src="js/controllers/NewsFeedController.js"></script>
+    <script type="application/javascript" src="js/controllers/RssFeedController.js"></script>
+    <script type="application/javascript" src="js/controllers/AddRssController.js"></script>
+
+
+
+</body>
+</html>

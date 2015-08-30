@@ -1,0 +1,14 @@
+
+<div class="row verticalCenterRow" ng-hide="small">
+    <div class="col-xs-4">
+        <img ng-src="{{avatarUrl}}"  class="avatar"/>
+    </div>
+
+    <div class="col-xs-8" ng-cloak>
+        <p class="userName" ng-bind="user"></p>
+    </div>
+</div>
+
+<img ng-src="{{avatarUrl}}"  class="avatarSmall"
+        ng-show="small"/>
+
