@@ -47,56 +47,64 @@ public class RssReaderTask {
         }
 
         for( RssFeed feed : feeds ){
-            try {
-                FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.getInstance();
-                FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
+            readFeed( feed );
+        }
+    }
 
-                SyndFeed rssFeed = feedFetcher.retrieveFeed(new URL(feed.getUrl()));
-                if( rssFeed.getEntries() != null ){
-                    List<SyndEntry> entries = rssFeed.getEntries();
-                    List<NewsFeed> newsFeeds = new ArrayList<NewsFeed>();
+    public void readRssFeed( RssFeed feed ){
+        readFeed( feed );
+    }
 
-                    for( SyndEntry entry : entries ){
-                        NewsFeed newsFeed = new NewsFeed();
+    private void readFeed( RssFeed feed ){
+        try {
+            FeedFetcherCache feedInfoCache = HashMapFeedInfoCache.getInstance();
+            FeedFetcher feedFetcher = new HttpURLFeedFetcher(feedInfoCache);
 
-                        if( entry.getLink() == null ){
-                            //Link is our key field, so no key we skip the feed
-                            continue;
-                        }
-                        if( newsFeedDao.countByArticleUrl(entry.getLink()) > 0 ) {
-                            //Check if we have this article
-                            continue;
-                        }
+            SyndFeed rssFeed = feedFetcher.retrieveFeed(new URL(feed.getUrl()));
+            if( rssFeed.getEntries() != null ){
+                List<SyndEntry> entries = rssFeed.getEntries();
+                List<NewsFeed> newsFeeds = new ArrayList<NewsFeed>();
 
-                        newsFeed.setArticleUrl( entry.getLink() );
-                        newsFeed.setTitle(entry.getTitle());
+                for( SyndEntry entry : entries ){
+                    NewsFeed newsFeed = new NewsFeed();
 
-                        SyndContent content = entry.getDescription();
-                        if( content == null ){
-                            continue;
-                        }
-
-                        //Strip any html code from the content
-                        String contentString = Jsoup.parse( content.getValue() ).text();
-                        newsFeed.setContent( contentString );
-
-                        List<SyndEnclosure> enclosures = entry.getEnclosures();
-                        if( enclosures != null && enclosures.size() > 0 ){
-                            SyndEnclosure enclosure = enclosures.get(0);
-                            newsFeed.setImageUrl( enclosure.getUrl() );
-                        }
-
-                        newsFeed.setPublishedDate(entry.getPublishedDate());
-
-                        newsFeed.setSource(feed);
-                        newsFeeds.add(newsFeed);
+                    if( entry.getLink() == null ){
+                        //Link is our key field, so no key we skip the feed
+                        continue;
+                    }
+                    if( newsFeedDao.countByArticleUrl(entry.getLink()) > 0 ) {
+                        //Check if we have this article
+                        continue;
                     }
 
-                    newsFeedDao.save( newsFeeds );
+                    newsFeed.setArticleUrl( entry.getLink() );
+                    newsFeed.setTitle(entry.getTitle());
+
+                    SyndContent content = entry.getDescription();
+                    if( content == null ){
+                        continue;
+                    }
+
+                    //Strip any html code from the content
+                    String contentString = Jsoup.parse( content.getValue() ).text();
+                    newsFeed.setContent( contentString );
+
+                    List<SyndEnclosure> enclosures = entry.getEnclosures();
+                    if( enclosures != null && enclosures.size() > 0 ){
+                        SyndEnclosure enclosure = enclosures.get(0);
+                        newsFeed.setImageUrl( enclosure.getUrl() );
+                    }
+
+                    newsFeed.setPublishedDate(entry.getPublishedDate());
+
+                    newsFeed.setSource(feed);
+                    newsFeeds.add(newsFeed);
                 }
-            }catch (Exception e ){
-                System.out.println("Something went wrong!");
+
+                newsFeedDao.save( newsFeeds );
             }
+        }catch (Exception e ){
+            System.out.println("Something went wrong!");
         }
     }
 }

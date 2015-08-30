@@ -2,6 +2,7 @@ package com.newsfeed.controllers;
 
 import com.newsfeed.dao.RssFeedDao;
 import com.newsfeed.entities.RssFeed;
+import com.newsfeed.tasks.RssReaderTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,9 @@ public class RssFeedController {
     @Autowired
     RssFeedDao rssFeedDao;
 
+    @Autowired
+    RssReaderTask rssReaderTask;
+
     @RequestMapping(value = "/api/rssfeed", method = RequestMethod.GET)
     public @ResponseBody List<RssFeed> findAll() {
         return rssFeedDao.findAll();
@@ -29,7 +33,10 @@ public class RssFeedController {
     public @ResponseBody Long createRssFeed(
             @RequestBody RssFeed rssFeed
     ) {
-        return rssFeedDao.saveAndFlush( rssFeed ).getId();
+        rssFeed = rssFeedDao.saveAndFlush(rssFeed);
+        rssReaderTask.readRssFeed( rssFeed );
+
+        return rssFeed.getId();
     }
 
 

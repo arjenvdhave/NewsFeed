@@ -15,50 +15,8 @@
 <body ng-app="news_feed">
 
 
-    <div id="sideMenu">
-
-
-        <div class="normalSideContent" ng-controller="RssFeedController as rssCtrl">
-            <div class="userInfoContainer">
-                <nf-avatar ></nf-avatar>
-            </div>
-
-            <div class="feedHeader">
-                <div class="row verticalCenterRow">
-                    <div class="col-xs-10">
-                        Rss feeds
-                    </div>
-
-                    <div class="col-xs-1">
-                        <button type="button" class="btn btnAddfeed btn-xs"
-                                ng-click="rssCtrl.handleAddRssClick()">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" ng-class="rssCtrl.activeIndex === 0 ? 'active':''">
-                    <a href ng-click="rssCtrl.handleRssShowAllClick()" >Alle berichten</a>
-                </li>
-                <li role="presentation" ng-cloak ng-repeat="rssFeed in rssCtrl.feeds"
-                    ng-class="rssCtrl.activeIndex === $index+1 ? 'active':''">
-                    <a href ng-click="rssCtrl.handleRssItemClick( rssFeed )">{{rssFeed.name}}</a>
-                </li>
-            </ul>
-        </div>
-        <div class="smallSideContent">
-            <nf-avatar show-as-small="true"></nf-avatar>
-
-        </div>
-    </div>
-
-    <div id="content" ng-view>
-
-
-    </div>
+    <div ng-view></div>
+    
 
     <!--vendor scripts-->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
