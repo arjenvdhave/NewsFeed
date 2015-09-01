@@ -134,6 +134,11 @@
     color: #fff;
 }
 
+.btnLogout{
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-bottom: 10px;}
+
 @media screen and (max-width: 500px) {
     .newsImage{
         width: 80px;

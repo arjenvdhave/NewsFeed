@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Test angular app</title>
+    <meta charset="UTF-8"/>
+    <title>Newsfeed</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-override.css">
-    <link rel="stylesheet" href="css/newsreader.css">
-    <link rel="stylesheet" href="css/addRss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-override.css"/>
+    <link rel="stylesheet" href="css/newsreader.css"/>
+    <link rel="stylesheet" href="css/addRss.css"/>
 
-    <script type="application/javascript">var userProfile={name:"Arjen van der Have", email:"arjen.xlan@gmail.com", avatar:"http://www.binarytradingforum.com/core/image.php?userid=9&dateline=1355299254"}</script>
+    <script type="application/javascript" th:inline="javascript">
+        var userProfile={   id:[[${auth.id}]],
+                            name:[[${auth.fullname}]],
+                            email:[[${auth.email}]],
+                            avatar:[[${auth.avatar}]]
+                        }
+    </script>
+    <script type="application/javascript" th:inline="javascript">var csrf={name:[[${_csrf.parameterName}]], token:[[${_csrf.token}]]}</script>
 
 </head>
 <body ng-app="news_feed">
+     <div ng-view></div>
 
-
-    <div ng-view></div>
-    
 
     <!--vendor scripts-->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -27,6 +33,7 @@
 
     <!-- App -->
     <script type="application/javascript" src="UserProfileModule.js"></script>
+     <script type="application/javascript" src="CsrfUtil.js"></script>
     <script type="application/javascript" src="app.js"></script>
 
     <!--Constants-->

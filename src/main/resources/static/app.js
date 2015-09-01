@@ -1,6 +1,6 @@
 'use strict'
 ;(function() {
-    angular.module('news_feed', ['userProfile', 'ngRoute'])
+    angular.module('news_feed', ['userProfile','csrfUtil', 'ngRoute'])
         .run(['USER_PROFILE', function(USER_PROFILE){
             if( !USER_PROFILE || !USER_PROFILE.email ){
                 //Unauthorized user, redirect here

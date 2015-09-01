@@ -1,4 +1,4 @@
-package com.newsfeed.controllers;
+package com.newsfeed.controllers.api;
 
 import com.newsfeed.dao.RssFeedDao;
 import com.newsfeed.entities.RssFeed;

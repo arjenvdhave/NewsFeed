@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Newsfeed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/loginstyle.css" type="text/css"/>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="panel panel-default login-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Login</h3>
+        </div>
+        <div class="panel-body">
+            <form th:action="@{/login}" method="post">
+                <div class="form-group" th:classappend="${param.error} ? 'has-error has-feedback' : ''">
+                    <label for="txtUserName">E-mail adres</label>
+                    <input type="text" name="username" class="form-control" id="txtUserName" placeholder="E-mail"/>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" th:if="${param.error}"></span>
+                    <span id="inputError2Status" class="sr-only" th:if="${param.error}">(error)</span>
+                </div>
+                <div class="form-group" th:classappend="${param.error} ? 'has-error has-feedback' : ''">
+                    <label for="txtPassword">Wachtwoord</label>
+                    <input type="password" class="form-control" name="password" id="txtPassword" placeholder="Wachtwoord">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" th:if="${param.error}"></span>
+                    <span id="inputError2Status" class="sr-only" th:if="${param.error}">(error)</span>
+
+                </div>
+
+                <div th:if="${param.error}">
+                    Ongeldig email of wachtwoord
+                </div>
+
+                <button type="submit" class="btn btn-primary">Inloggen</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="panel panel-default login-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Aanmelden</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/signup" th:object="${newUser}" method="post">
+                <div class="form-group">
+                    <label for="txtNewUserName">E-mail adres</label>
+                    <input type="text" name="username" class="form-control" id="txtNewUserName" placeholder="E-mail"
+                           th:field="*{email}"/>
+                </div>
+                <div class="form-group">
+                    <label for="txtFullName">Naam</label>
+                    <input type="text" name="username" class="form-control" id="txtFullName" placeholder="E-mail"
+                           th:field="*{fullname}"/>
+                </div>
+                <div class="form-group">
+                    <label for="txtNewPassword">Wachtwoord</label>
+                    <input type="password" class="form-control" name="password" id="txtNewPassword" placeholder="Wachtwoord"
+                           th:field="*{password}">
+                </div>
+                <div class="form-group">
+                    <label for="txtNewPasswordRepeat">Herhaal wachtwoord</label>
+                    <input type="password" class="form-control" name="password" id="txtNewPasswordRepeat" placeholder="Wachtwoord"
+                           th:field="*{passwordRepeat}">
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                <button type="submit" class="btn btn-primary">Aanmelden</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

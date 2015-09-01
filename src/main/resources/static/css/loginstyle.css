@@ -1,0 +1,15 @@
+body{
+    background-color: #F7F6F6;
+}
+
+.login-panel{
+    width:400px;
+    margin:auto;
+    margin-top: 50px;
+}
+
+.panel-default>.panel-heading {
+    color: #FFF;
+    background-color: #444444;
+    border-color: #ddd;
+}

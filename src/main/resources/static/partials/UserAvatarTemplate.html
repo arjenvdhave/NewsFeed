@@ -4,8 +4,18 @@
         <img ng-src="{{avatarUrl}}"  class="avatar"/>
     </div>
 
-    <div class="col-xs-8" ng-cloak>
+    <div class="col-xs-6" ng-cloak>
         <p class="userName" ng-bind="user"></p>
+    </div>
+
+    <div class="col-xs-2" ng-cloak>
+        <form action="{{logoutUrl}}" method="post" id="frmLogout">
+            <input type="hidden" name="{{CSRF.name}}" value="{{CSRF.token}}"/>
+
+            <span class="glyphicon glyphicon-off btnLogout" aria-hidden="true"
+                    onclick="document.getElementById('frmLogout').submit()"></span>
+
+        </form>
     </div>
 </div>
 
