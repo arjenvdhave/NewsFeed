@@ -1,6 +1,6 @@
 'use strict'
 ;(function(app) {
-    app.factory('NewsFeedService',['$http', '$q', 'API', function($http, $q, API){
+    app.factory('NewsFeedService',['$http', '$q', 'API','CSRF', function($http, $q, API, CSRF){
 
         var findAll = function(){
             var deferred = $q.defer();
@@ -24,7 +24,7 @@
 
         var removeNewsFeed = function ( newsFeedId) {
             var deferred = $q.defer();
-            $http.delete(API.baseUrl+"/newsfeed/"+newsFeedId)
+            $http.delete(API.baseUrl+"/newsfeed/"+newsFeedId+"?"+CSRF.name + '=' + CSRF.token)
                 .success( deferred.resolve )
                 .error( deferred.reject );
 

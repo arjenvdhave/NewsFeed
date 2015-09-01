@@ -1,6 +1,6 @@
 'use strict'
 ;(function(app) {
-    app.factory('RssFeedService',['$http', '$q', 'API', function($http, $q, API){
+    app.factory('RssFeedService',['$http', '$q', 'API','CSRF', function($http, $q, API,CSRF){
 
         var findAll = function(){
             var deferred = $q.defer();
@@ -13,7 +13,7 @@
 
         var createRssFeed = function(rssFeed){
             var deferred = $q.defer();
-            $http.post(API.baseUrl+'/rssfeed', rssFeed)
+            $http.post(API.baseUrl+'/rssfeed'+"?"+CSRF.name + '=' + CSRF.token, rssFeed)
                 .success(deferred.resolve)
                 .error(deferred.reject);
             return deferred.promise;

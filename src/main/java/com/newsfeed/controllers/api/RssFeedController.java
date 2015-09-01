@@ -38,20 +38,4 @@ public class RssFeedController {
 
         return rssFeed.getId();
     }
-
-
-
-
-    @RequestMapping(value = "/api/rssfeed/mock", method = RequestMethod.GET)
-    public @ResponseBody List<RssFeed> createMockData(){
-        RssFeed nu = new RssFeed("nu.nl", "http://www.nu.nl/rss");
-        RssFeed ad = new RssFeed("AD", "http://www.ad.nl/rss.xml");
-        RssFeed spitsnieuws = new RssFeed("RTL Nieuws", "http://www.rtlnieuws.nl/service/rss/nieuws/index.xml");
-
-        rssFeedDao.saveAndFlush( nu );
-        rssFeedDao.saveAndFlush( ad );
-        rssFeedDao.saveAndFlush( spitsnieuws );
-
-        return rssFeedDao.findAll();
-    }
 }

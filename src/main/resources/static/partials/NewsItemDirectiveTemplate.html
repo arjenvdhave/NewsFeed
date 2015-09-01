@@ -16,12 +16,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-3">
-            <div class="newsButton"><a href="#" ng-click="removeNewsItem(  itemIdx, newsitem ) ">Verwijder</a></div>
-        </div>
-        <div class="col-xs-9">
-            <div class="newsButton floatRight"><a href="/">Opslaan</a></div>
+
+        <div class="col-xs-12">
             <div class="newsButton floatRight"><a ng-href="{{newsitem.articleUrl}}" target="_blank">Lees meer</a></div>
+            <div class="newsButton floatRight"><a href ng-click="removeNewsItem(  itemIdx, newsitem ) ">Verwijder</a></div>
         </div>
     </div>
 </div>
